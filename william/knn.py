@@ -25,7 +25,7 @@ class KNN:
         self.random_state = random_state
 
     def load_data(self, path, **kw):
-        df = pd.read_csv(path, **kw)
+        df = pd.read_csv(path, skiprows=[0], **kw)
         self.original_data = df.values
 
         print(f'{df}')
@@ -262,6 +262,9 @@ def accuracy_stats(accuracy):
 
 
 def plot(df_train, df_test, show=False):
+    title = args.path.replace('.csv', '')
+    title = title.replace('../dataset/', '')
+
     ks = df_train.index
 
     # Plot
@@ -291,7 +294,7 @@ def plot(df_train, df_test, show=False):
 
     plt.tight_layout()
 
-    plt.savefig('knn_accuracy.png')
+    plt.savefig(f'img/knn_accuracy_{title}.png')
 
     if show:
         plt.show()

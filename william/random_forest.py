@@ -251,25 +251,26 @@ def run_rf():
 
     # Save performance plots
     title = args.path.replace('.csv', '')
+    title = title.replace('../dataset/', '')
 
     fig = df.plot(xlabel='ntrees', grid=True, title=title).get_figure()
-    fig.savefig(f'img/hw3_{title}.png')
+    fig.savefig(f'img/rf_{title}.png')
 
     fig = df.plot(xlabel='ntrees', y='accuracy', ylabel='accuracy',
                   grid=True, title=title).get_figure()
-    fig.savefig(f'img/hw3_{title}_accuracy.png')
+    fig.savefig(f'img/rf_{title}_accuracy.png')
 
     fig = df.plot(xlabel='ntrees', y='precision',
                   ylabel='precision', grid=True, title=title).get_figure()
-    fig.savefig(f'img/hw3_{title}_precision.png')
+    fig.savefig(f'img/rf_{title}_precision.png')
 
     fig = df.plot(xlabel='ntrees', y='recall',
                   ylabel='recall', grid=True, title=title).get_figure()
-    fig.savefig(f'img/hw3_{title}_recall.png')
+    fig.savefig(f'img/rf_{title}_recall.png')
 
     fig = df.plot(xlabel='ntrees', y='F1',
                   ylabel='F1', grid=True, title=title).get_figure()
-    fig.savefig(f'img/hw3_{title}_f1.png')
+    fig.savefig(f'img/rf_{title}_f1.png')
 
     return df   # performance dataframe
 
