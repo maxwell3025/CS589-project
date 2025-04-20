@@ -1,6 +1,7 @@
+import collections
 import numpy
-import decision_tree
-import maxwell.models.disorder_functions as disorder_functions
+from models import decision_tree
+from models import disorder_functions
 import random
 
 class RandomForest:
@@ -13,7 +14,7 @@ class RandomForest:
         column_names: list[str],
         types: list[str],
         key_to_string: list[str],
-        random_generator: random.Random,
+        random_generator: random.Random = random.Random(),
         ):
         self.trees = []
         for _ in range(ntree):
@@ -30,15 +31,19 @@ class RandomForest:
                 random_generator
             ))
     
-    def __call__(self, data: numpy.ndarray):
+    def predict(self, data: numpy.ndarray):
         if data.shape[1] != len(self.trees[0].column_names):
             raise ValueError(f"Received data with {data.shape[1]} columns. Expected {len(self.trees[0].column_names)}")
-        # NOTE this only works with binary data!
-        prediction_sum = numpy.zeros((data.shape[0]))
-        for tree in self.trees:
-            prediction_sum += tree.predict(data)
-        prediction = prediction_sum / len(self.trees)
-        return numpy.round(prediction)
+        n_rows = data.shape[0]
+        # The k-th column is the k-th tree's predictions
+        predictions = numpy.concatenate([
+            tree.predict(data)[:, numpy.newaxis] for tree in self.trees
+        ], axis=1)
+
+        return numpy.array([
+            collections.Counter(predictions[row, :]).most_common(1)[0][0]
+            for row in range(n_rows)
+        ], dtype=int)
 
 
 
