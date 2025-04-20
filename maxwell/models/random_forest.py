@@ -1,6 +1,6 @@
 import numpy
 import decision_tree
-import disorder_functions
+import maxwell.models.disorder_functions as disorder_functions
 import random
 
 class RandomForest:

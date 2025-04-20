@@ -18,7 +18,7 @@ for train_features, train_labels, test_features, test_labels in dataset:
     for i in range(len(predictions)):
         confusion_matrix[test_labels[i], predictions[i]] += 1
 
-    # Here, we 
+    # Here we calculate various metrics based on the confusion matrix.
     accuracy = confusion_matrix.diagonal().sum() / confusion_matrix.sum()
     print(f"{accuracy=}")
     for i in range(10):
