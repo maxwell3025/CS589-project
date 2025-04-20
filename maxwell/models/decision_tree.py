@@ -1,4 +1,3 @@
-import fast_algorithms
 import numpy
 import random
 import math
@@ -49,7 +48,7 @@ class DecisionTree:
         self.column_names = column_names
         self.key_to_string = key_to_string
 
-        label_values, label_counts = fast_algorithms.unique_counts(data[:, -1])
+        label_values, label_counts = numpy.unique_counts(data[:, -1])
         self.prediction = label_values[label_counts.argmax()]
 
         if len(my_splittable_set) == 0 or n_rows < minimal_size_for_split:
@@ -63,7 +62,7 @@ class DecisionTree:
                 total_disorder[discriminant_index] = float("inf")
                 continue
             if types[discriminant_index] == "categorical":
-                label_values = fast_algorithms.unique(data[:, discriminant_index])
+                label_values = numpy.unique(data[:, discriminant_index])
                 for value in label_values:
                     partition = data[data[:, discriminant_index] == value]
                     total_disorder[discriminant_index] += disorder_function(partition) * partition.shape[0]
@@ -108,7 +107,7 @@ class DecisionTree:
                 )
                 self.children[1].parent = self
         elif self.discriminant_dtype == "categorical":
-            label_values = fast_algorithms.unique(data[:, self.discriminant])
+            label_values = numpy.unique(data[:, self.discriminant])
             self.children = dict()
             for value in label_values:
                 relevant_rows = data[data[:, self.discriminant] == value]
