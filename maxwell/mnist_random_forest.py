@@ -3,26 +3,33 @@ import datetime
 import numpy
 import utils
 from datasets import mnist
-from models import knn_predictor
+from models import random_forest
 
 dataset = mnist.MNIST()
 
-results_path = f"maxwell/data/mnist_knn_{datetime.datetime.now().isoformat()}.csv"
+results_path = f"maxwell/data/mnist_random_forest_{datetime.datetime.now().isoformat()}.csv"
 
 with open(results_path, "a") as file:
     writer = csv.writer(file)
-    writer.writerow(["k", "accuracy", *(f"f1_{i}" for i in range(10))])
+    writer.writerow(["ntree", "accuracy", *(f"f1_{i}" for i in range(10))])
 
-k_values = [*range(1, 100)]
-for k in k_values:
+ntree_values = [1, 2, 5, 10, 20, 50, 100]
+for ntree in ntree_values:
     for train_features, train_labels, test_features, test_labels in dataset:
         data = numpy.concatenate([
             train_features,
             train_labels[:, numpy.newaxis]
         ], axis=1)
-        model = knn_predictor.KnnPredictor(data, k)
+        model = random_forest.RandomForest(
+            ntree=ntree,
+            minimal_size_for_split=10,
+            data=data,
+            column_names=[str(i) for i in range(64)],
+            types=["numeric" for i in range(64)],
+            key_to_string=[]
+        )
 
-        test_predictions = model.predict(test_features, normalize=False)
+        test_predictions = model.predict(test_features)
 
         test_confusion_matrix = utils.get_confusion_matrix(test_predictions, test_labels)
 
@@ -31,4 +38,4 @@ for k in k_values:
 
         with open(results_path, "a") as file:
             writer = csv.writer(file)
-            writer.writerow([k, test_accuracy, *test_f1])
+            writer.writerow([ntree, test_accuracy, *test_f1])
