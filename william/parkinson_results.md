@@ -67,7 +67,7 @@ stats_test:
 
 ## Random Forest
 
-### `random_forest.py -p ../dataset/parkinsons.csv -bst true --random_state 42`
+### `python random_forest.py -p ../dataset/parkinsons.csv -bst true --random_state 42`
 
 ```
 Random Forest Performance: 
