@@ -11,7 +11,7 @@ from collections import defaultdict
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 
-from utils import preprocess_text, load_training_set, load_test_set
+from ml_utils import preprocess_text, load_training_set, load_test_set
 
 
 class MultiNB:
