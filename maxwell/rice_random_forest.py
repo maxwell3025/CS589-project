@@ -5,7 +5,7 @@ import utils
 from datasets import k_fold
 from models import random_forest
 
-dataset = k_fold.KFold("dataset/rice.csv", k = 5)
+dataset = k_fold.KFold("dataset/rice.csv", k = 10)
 
 results_path = f"maxwell/data/rice_random_forest_{datetime.datetime.now().isoformat()}.csv"
 

@@ -5,7 +5,7 @@ import utils
 from datasets import k_fold
 from models import knn_predictor
 
-dataset = k_fold.KFold("dataset/rice.csv", k = 5)
+dataset = k_fold.KFold("dataset/rice.csv", k = 10)
 
 results_path = f"maxwell/data/rice_knn_{datetime.datetime.now().isoformat()}.csv"
 
