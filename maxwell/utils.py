@@ -5,7 +5,7 @@ def get_confusion_matrix(predictions: numpy.ndarray, labels: numpy.ndarray) -> n
     n_classes = max(predictions.max(), labels.max()) + 1
     confusion_matrix = numpy.zeros((n_classes, 10))
     for i in range(len(predictions)):
-        confusion_matrix[labels[i], predictions[i]] += 1
+        confusion_matrix[int(labels[i]), int(predictions[i])] += 1
     return confusion_matrix
 
 def get_accuracy(confusion_matrix: numpy.ndarray):

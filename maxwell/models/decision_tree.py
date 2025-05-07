@@ -1,8 +1,7 @@
 import numpy
 import random
 import math
-from typing import Callable, Union
-
+from typing import Callable, Union, Literal
 
 class DecisionTree:
     children: Union[dict[int, "DecisionTree"], None]
@@ -19,7 +18,7 @@ class DecisionTree:
         data: numpy.ndarray,
         column_names: list[str],
         disorder_function: Callable[[numpy.ndarray], float],
-        types: list[str],
+        types: list[Literal["categorical", "numeric"]],
         key_to_string: list[str],
         minimal_size_for_split: int,
         random_generator: random.Random,
@@ -126,6 +125,7 @@ class DecisionTree:
         else:
             raise RuntimeError("no discriminant dtype")
 
+
     def predict(self, data: numpy.ndarray) -> numpy.ndarray:
         if self.children == None:
             return numpy.full((data.shape[0],), self.prediction, dtype = numpy.float64)
@@ -147,13 +147,16 @@ class DecisionTree:
                     predictions[indices] = numpy.full((indices.size,), self.prediction, dtype = numpy.float64)
         return predictions
 
+
     @property
     def is_root(self):
         return self.parent == None
 
+
     @property
     def is_leaf(self):
         return self.children == None
+
 
     def _str(self, lines: list[str], label: str, line_stack: list[str], is_last: bool) -> None:
         LINE = "\u2502"
@@ -184,6 +187,7 @@ class DecisionTree:
                     label = f"{self.column_names[self.discriminant]} > {self.discriminant_threshold}"
                 self.children[child_value]._str(lines, label, new_line_stack, is_last_child) # type: ignore
     
+
     def __str__(self) -> str:
         lines: list[str] = []
         self._str(lines, " .", [], True)
