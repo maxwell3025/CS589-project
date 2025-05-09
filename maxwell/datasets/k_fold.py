@@ -1,6 +1,6 @@
 import numpy
 import pandas
-from typing import Literal
+from typing import Literal, cast
 
 class KFold:
     k: int
@@ -8,6 +8,7 @@ class KFold:
     key_to_str: list[str] = []
     column_names: list[str]
     column_dtypes: list[Literal["categorical", "numeric"]] = []
+
 
     def __init__(self, csv_url: str, k: int):
         self.k = k
@@ -30,8 +31,8 @@ class KFold:
         dataframe = dataframe[[*categorical_column_names, *numeric_column_names, "label"]]
 
         self.column_dtypes = [
-            *("categorical" for _ in categorical_column_names),
-            *("numeric" for _ in numeric_column_names)
+            *(cast(Literal["categorical"], "categorical") for _ in categorical_column_names),
+            *(cast(Literal["numeric"], "numeric") for _ in numeric_column_names)
         ]
         str_to_key: dict[str, int] = {}
         key_to_str: list[str] = []
@@ -57,6 +58,7 @@ class KFold:
             numpy.random.shuffle(data_tensor)
             self.data.append(data_tensor)
         
+
     def __iter__(self):
         for i in range(self.k):
             test_data = self.data[i]

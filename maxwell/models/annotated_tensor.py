@@ -53,7 +53,6 @@ class AnnotatedTensor:
             return self * scale
 
 
-
 class MatrixProduct(AnnotatedTensor):
     lhs: AnnotatedTensor
     rhs: AnnotatedTensor
@@ -184,7 +183,10 @@ def log(x: AnnotatedTensor) -> AnnotatedTensor:
     return NatLogResult(x)
 
 
-def cross_entropy(prediction: AnnotatedTensor, label: AnnotatedTensor):
+def cross_entropy(prediction: AnnotatedTensor, label: AnnotatedTensor | numpy.ndarray):
+    if not isinstance(label, AnnotatedTensor):
+        label = AnnotatedTensor(label)
+
     if prediction.value.shape != label.value.shape:
         raise ValueError(f"Shapes do not match: {prediction.value.shape} {label.value.shape}")
     

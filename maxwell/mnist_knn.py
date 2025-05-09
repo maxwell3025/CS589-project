@@ -11,7 +11,7 @@ results_path = f"maxwell/data/mnist_knn_{datetime.datetime.now().isoformat()}.cs
 
 with open(results_path, "a") as file:
     writer = csv.writer(file)
-    writer.writerow(["k", "accuracy", *(f"f1_{i}" for i in range(10))])
+    writer.writerow(["hyperparameters", "k", "accuracy", *(f"f1_{i}" for i in range(10))])
 
 k_values = [*range(1, 100)]
 for k in k_values:
@@ -31,4 +31,4 @@ for k in k_values:
 
         with open(results_path, "a") as file:
             writer = csv.writer(file)
-            writer.writerow([k, test_accuracy, *test_f1])
+            writer.writerow(["None", k, test_accuracy, *test_f1])

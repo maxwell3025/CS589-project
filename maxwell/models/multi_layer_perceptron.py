@@ -1,4 +1,4 @@
-import annotated_tensor
+from models import annotated_tensor
 import numpy
 
 class MultiLayerPerceptron:
@@ -26,9 +26,11 @@ class MultiLayerPerceptron:
     
 
     def predict(self, features: numpy.ndarray) -> annotated_tensor.AnnotatedTensor:
-        assert len(features.shape) >= 2
-        assert features.shape[-2] == self.layer_sizes[0], \
-            f"{features.shape[-2]} != {self.layer_sizes[0]}"
+        assert len(features.shape) == 2
+        assert features.shape[1] == self.layer_sizes[0], \
+            f"{features.shape[1]} != {self.layer_sizes[0]}"
+        
+        features = features.transpose()
 
         input = annotated_tensor.AnnotatedTensor(features)
         for layer_index, weight in enumerate(self.weights):

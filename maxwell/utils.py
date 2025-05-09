@@ -2,8 +2,10 @@ import numpy
 import typing
 
 def get_confusion_matrix(predictions: numpy.ndarray, labels: numpy.ndarray) -> numpy.ndarray:
+    predictions = predictions.astype(int, casting = "unsafe")
+    labels = labels.astype(int, casting = "unsafe")
     n_classes = max(predictions.max(), labels.max()) + 1
-    confusion_matrix = numpy.zeros((n_classes, 10))
+    confusion_matrix = numpy.zeros((n_classes, n_classes))
     for i in range(len(predictions)):
         confusion_matrix[int(labels[i]), int(predictions[i])] += 1
     return confusion_matrix

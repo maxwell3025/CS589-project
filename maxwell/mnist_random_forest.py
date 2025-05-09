@@ -11,7 +11,7 @@ results_path = f"maxwell/data/mnist_random_forest_{datetime.datetime.now().isofo
 
 with open(results_path, "a") as file:
     writer = csv.writer(file)
-    writer.writerow(["ntree", "accuracy", *(f"f1_{i}" for i in range(10))])
+    writer.writerow(["hyperparameters", "ntree", "accuracy", *(f"f1_{i}" for i in range(10))])
 
 ntree_values = [1, 2, 5, 10, 20, 50, 100]
 for ntree in ntree_values:
