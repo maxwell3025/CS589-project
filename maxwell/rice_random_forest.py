@@ -5,22 +5,22 @@ from datasets import k_fold
 from models import random_forest
 import multiprocessing
 
-
 results_file_lock = multiprocessing.Lock()
-def run_eval(results_path: str):
+ntree_values = [1, 2, 5, 10, 20, 50, 100]
+split_sizes = [2, 5, 10, 20, 30, 40, 50]
+def run_eval(results_path: str, minimal_size_for_split: int):
     global results_file_lock
-    dataset = k_fold.KFold("dataset/rice.csv", k = 10)
 
-    ntree_values = [1, 2, 5, 10, 20, 50, 100]
     for ntree in ntree_values:
+        dataset = k_fold.KFold("dataset/rice.csv", k = 10)
         for test, train in dataset:
             model = random_forest.RandomForest(
-                ntree=ntree,
-                minimal_size_for_split = 10,
-                data=train,
-                column_names=dataset.column_names,
-                types=dataset.column_dtypes,
-                key_to_string=dataset.key_to_str
+                ntree = ntree,
+                minimal_size_for_split = minimal_size_for_split,
+                data = train,
+                column_names = dataset.column_names,
+                types = dataset.column_dtypes,
+                key_to_string = dataset.key_to_str
             )
 
             test_predictions = model.predict(test[:, :-1])
@@ -33,7 +33,7 @@ def run_eval(results_path: str):
             results_file_lock.acquire()
             with open(results_path, "a") as results_file:
                 results_writer = csv.writer(results_file)
-                results_writer.writerow([ntree, test_accuracy, *test_f1])
+                results_writer.writerow([f"{minimal_size_for_split=}", ntree, test_accuracy, *test_f1])
             results_file_lock.release()
 
 
@@ -45,4 +45,6 @@ with open(results_path, "a") as results_file:
 
 processing_pool = multiprocessing.Pool()
 
-processing_pool.map(run_eval, [results_path] * 16)
+processing_pool.starmap(run_eval, [(results_path, minimal_size_for_split)
+                                   for minimal_size_for_split in split_sizes
+                                   for _ in range(10)])
