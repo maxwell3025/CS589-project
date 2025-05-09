@@ -1,0 +1,40 @@
+\section{MNIST Dataset}
+\subsection{Hyperparameter Sets}
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c}
+        Model Shape      & Epoch & Accuracy \\
+        \hline
+        [64, 128, 10]    & 989   & 0.952145 \\ \relax
+        [64, 64, 10]     & 977   & 0.933768 \\ \relax
+        [64, 10]         & 988   & 0.920987 \\ \relax
+        [64, 16, 10]     & 991   & 0.878687 \\ \relax
+        [64, 16, 16, 10] & 998   & 0.803554 \\ \relax
+        [64, 8, 10]      & 997   & 0.722818 \\ \relax
+        [64, 8, 8, 10]   & 999   & 0.533731
+    \end{tabular}
+    \caption{The results for the hyperparameter tuning step on the MLP architecture trained on the
+             rice dataset.
+             The best epoch is used for each hyperparameter setting.}
+    \label{tab:mnist_nn}
+\end{table}
+
+\subsection{Hyperparameter Sets}
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c}
+        Minimum Splittable Size & ntree & Mean Accuracy \\
+        \hline
+        5                       & 100   & 0.977182 \\ \relax
+        10                      & 100   & 0.975515 \\ \relax
+        20                      & 50    & 0.967722 \\ \relax
+        30                      & 100   & 0.954926 \\ \relax
+        40                      & 100   & 0.953256 \\ \relax
+        50                      & 50    & 0.943811 \\ \relax
+        2                       & 10    & 0.523063
+    \end{tabular}
+    \caption{The results for the hyperparameter tuning step on the random forest architecture
+             trained on the rice dataset.
+             The best epoch is used for each hyperparameter setting.}
+    \label{tab:mnist_random_forest}
+\end{table}

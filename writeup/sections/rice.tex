@@ -1,0 +1,56 @@
+\section{Rice Dataset}
+Maxwell's implementations were used for the entirety of this dataset.
+For the rice dataset, we chose 
+\subsection{Hyperparameter Sets}
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c}
+        Model Shape    & Epoch & Mean Accuracy \\
+        \hline
+        [7, 8, 8, 1]   & 765   & 0.930971 \\ \relax
+        [7, 2, 1]      & 979   & 0.929921 \\ \relax
+        [7, 2, 4, 1]   & 996   & 0.929659 \\ \relax
+        [7, 1]         & 670   & 0.929396 \\ \relax
+        [7, 16, 16, 1] & 553   & 0.928871 \\ \relax
+        [7, 4, 16, 1]  & 735   & 0.928871 \\ \relax
+        [7, 2, 16, 1]  & 656   & 0.928871 \\ \relax
+        [7, 16, 1]     & 584   & 0.928871 \\ \relax
+        [7, 16, 8, 1]  & 757   & 0.928084 \\ \relax
+        [7, 8, 2, 1]   & 969   & 0.928084 \\ \relax
+        [7, 8, 1]      & 535   & 0.928084 \\ \relax
+        [7, 8, 4, 1]   & 638   & 0.928084 \\ \relax
+        [7, 16, 2, 1]  & 760   & 0.927822 \\ \relax
+        [7, 2, 8, 1]   & 960   & 0.927822 \\ \relax
+        [7, 8, 16, 1]  & 748   & 0.927822 \\ \relax
+        [7, 16, 4, 1]  & 732   & 0.927822 \\ \relax
+        [7, 4, 8, 1]   & 835   & 0.927559 \\ \relax
+        [7, 4, 4, 1]   & 993   & 0.927297 \\ \relax
+        [7, 4, 1]      & 781   & 0.927034 \\ \relax
+        [7, 4, 2, 1]   & 770   & 0.925722 \\ \relax
+        [7, 2, 2, 1]   & 999   & 0.887139
+    \end{tabular}
+    \caption{The results for the hyperparameter tuning step on the MLP architecture trained on the rice
+             dataset.
+             The best epoch is used for each hyperparameter setting.}
+    \label{tab:rice_nn}
+\end{table}
+
+                                 
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c}
+        Minimum Splittable Size & ntree & Mean Accuracy \\
+        \hline
+        30                      & 100   & 0.928215 \\ \relax
+        20                      & 100   & 0.927979 \\ \relax
+        40                      & 100   & 0.927428 \\ \relax
+        50                      & 100   & 0.927008 \\ \relax
+        10                      & 50    & 0.926772 \\ \relax
+        2                       & 50    & 0.926772 \\ \relax
+        5                       & 50    & 0.926772
+    \end{tabular}
+    \caption{The results for the hyperparameter tuning step on the Random Forest architecture
+             trained on the rice dataset.
+             The best ntree value is used for each hyperparameter setting.}
+    \label{tab:rice_random_forest}
+\end{table}

@@ -31,4 +31,4 @@ for k in k_values:
 
         with open(results_path, "a") as file:
             writer = csv.writer(file)
-            writer.writerow(["None", k, test_accuracy, *test_f1])
+            writer.writerow(["1", k, test_accuracy, *test_f1])

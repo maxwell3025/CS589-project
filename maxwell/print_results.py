@@ -19,6 +19,7 @@ std = results.groupby(["hyperparameters", args.param]).std()
 
 ideal_indices = mean[args.opt].groupby("hyperparameters").idxmax()
 best_values = mean.join(std, lsuffix = "_mean", rsuffix = "_std").loc[ideal_indices]
-best_values = best_values.sort_values(by = ["accuracy_mean"])
+best_values = best_values.sort_values(by = ["accuracy_mean"], ascending = False)
 
+pandas.set_option('display.max_columns', None)
 print(best_values)

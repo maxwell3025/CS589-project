@@ -31,3 +31,8 @@
 
 ## Non-trivial Algorithm
 - Linear regression w/ different bases
+
+### Data Generation
+```bash
+python maxwell/print_results.py <options>
+```
