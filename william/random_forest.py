@@ -10,7 +10,7 @@ import multiprocessing as mp
 
 
 class RandomForest:
-    def __init__(self, ntrees, k_fold=5, random_state=None, args=None):
+    def __init__(self, ntrees, k_fold=10, random_state=None, args=None):
         self.ntrees = ntrees
         self.ensemble = []
         self.k_fold = k_fold

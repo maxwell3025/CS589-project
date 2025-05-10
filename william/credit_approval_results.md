@@ -256,9 +256,9 @@ Mean Test Metrics:
 
 We found the Testing set resemble the training set in accuracy, precision, recall, and F1. This further boost the confidence of reliable results.  
 
-As we can see, $k$-NN improves performs from k=1 tp 7, as the model seek closeness from kneighboring data points. All accuracy, precision, recall, and F1 peaks at k=7, indicating maximum signal when k=7. As more data points included, the signal is diluted, and performance decline, until k=20. Performances slowly climbs afterwards for both training and testing sets. It never reach previous peaks on training set. 
+As we can see, $k$-NN improves performance from $k=1$ to 7, as the model seeks closeness from $k$ neighboring data points. Accuracy, precision, recall, and F1 all peak at $k=7$, indicating maximum signal when $k=7$. As more data points included, the signal is diluted, and performance declines until $k=20$. Performance slowly climbs afterwards for both the training and testing sets. It never reach previous peaks on training set. 
 
-How to pick the best $k$ values? I would like to pick k= 5, 7, and 9. From charts, all accuracy, precision, recall, and F1 are about 0.87, for training set. Such results are confimed in testing set. For credit approval application, false positive means big financial loss from persons who can not pay back. So high precision is very beneficial. The highest F1 near 0.87 shows robustness of these result. 
+How to pick the best $k$ values? I would like to pick $k= 5, 7,$ and 9. From the charts, accuracy, precision, recall, and F1 are all about 0.87 for the training set. Such results are confirmed in the testing set. For credit approval application, false positives mean big financial losses from people who cannot pay back. So high precision is very beneficial. The highest F1 near 0.87 shows the robustness of these results. 
 
 Ideally, I would peak the optimal $k=7$, exactly at the performance peak, with surrounding performance at $k=5$ and 9 also stable and good.
 
@@ -267,7 +267,7 @@ Ideally, I would peak the optimal $k=7$, exactly at the performance peak, with s
 
 \newpage
 
-## 2. Random Forest
+### 2. Random Forest
 
 ```
 $ python random_forest.py --help
@@ -307,7 +307,7 @@ optional arguments:
 
 Use use -ntrees -1 to let the random forest algorithms to loop over [1 5 10 20 30 40 50 75 100 125 150 200 250 300] trees.  
 
-To handle the large computational demand, multiprocessing are used to use multicores (overcome python GIL lock). multiprocessing queues are used to feed workers with tasks, and collect results.  For details,  please see code.  
+To handle the large computational demand, multiprocessing is used to use multicores (overcome python GIL lock). Multiprocessing queues are used to feed workers with tasks and collect results.  For details,  please see code.  
 
 
 ```
@@ -382,16 +382,16 @@ Random Forest Performance:
 ![Random Forest by Gini: Credit Approval](./img/rf_credit_approval_adj_gini.png)   
 
 
-Both entropy and the Gini index offer very similar performances. They all start with low accuracy, precision, recall, and F1  for low `ntrees` counts. This is expected, as a random forest relies on collecting the wisdom of weak learners. Each decision tree offers better than random performance, but it is far from stellar. As `ntrees` reaches 40, performance is significantly improved, with accuracy 0.841 and F1 0.840. The model continues to improve, synergizing the knowledges of more decision trees, until ntrees around 125. This is the point all metrics peak together, with accuracy 0.857, precision 0.865, recall 0.850, and F1 0.854. Then the performance more or less is flat. This is the point of diminishing return for more computing. 
+Both entropy and the Gini index offer very similar performances. They all start with low accuracy, precision, recall, and F1  for low `ntrees` counts. This is expected, as a random forest relies on collecting the wisdom of weak learners. Each decision tree offers better than random performance, but it is far from stellar. As `ntrees` reaches 40, performance is significantly improved, with accuracy 0.841 and F1 0.840. The model continues to improve, synergizing the knowledges of more decision trees, until `ntrees` is around 125. This is the point where all metrics peak together, with accuracy 0.857, precision 0.865, recall 0.850, and F1 0.854. Then the performance more or less is flat. This is the point of diminishing returns for more computing. 
 
 The chart by the Gini index is similar with small variations. This confirmation is welcome in our analysis.
 
 Since the performance is stable and very flat from `ntrees` 100 to 300, we would pick the peak performance near the low end `ntrees = 125` as the optimal hyperparameter for the random forest algorithm for highest performance. 
 
 
-## 3. NN
+### 3. NN
 
-We should caution against overfitting with deep and dense neural network. We only have 584 data samples. Considering there are 46 features in the data after one-hot encoding, if the first layer has 16 neurons, it takes $46 x 16 = 736$ parameters, which is more than our data points. 
+We should caution against overfitting with deep and dense neural networks. We only have 584 data samples. Considering there are 46 features in the data after one-hot encoding, if the first layer has 16 neurons, it takes $46 x 16 = 736$ parameters, which is more than the number of our data points. 
 
 ```
 $ python nn.py --help
@@ -433,9 +433,9 @@ optional arguments:
                         Project name prefix, like myproject, default proj
 ```
 
-We want to build a simple network with strong performance, rather than a complex network of over curve-fitting. So we start explore network with single hidden layer with low neuron count, then two hidden layers, then three hidden layers. We shall see that a moderate network is adequate. 
+We want to build a simple network with strong performance, rather than a complex network of over curve-fitting. So we start by exploring a network with a single hidden layer with a low neuron count, then two hidden layers, then three hidden layers. We shall see that a moderate network is adequate. 
 
-The tuning of learning rate and regularization rate are key to performing model.  
+The tuning of the learning rate and regularization rate is key to a performing model.  
 
 
 ```
@@ -476,17 +476,17 @@ $ python nn.py --hidden_neurons "16 16" -lr 0.01 -rlambda 0.01 \
 (* indicates the best network configuration.)
 
 
-For single layer, as we can see the perfornace metrics are similar for nurons 2, 4, 8, 16 and 32. They all have low loss around 0.35 , accuracy 0.86, precision 0.86, recall 0.86, and F1 0.86.  This hint simple network with low neurons. It might suggest more than 8 neurons are unnecessary complexity, yet less that 2 is unnecessay limiting.
+For a single layer, as we can see the performance metrics are similar for nurons 2, 4, 8, 16 and 32. They all have low loss around 0.35 , accuracy 0.86, precision 0.86, recall 0.86, and F1 0.86.  This hints a simple network with low neurons. It might suggest that more than 8 neurons are unnecessarily complex, yet less than 2 is unnecessarily limiting.
 
-From the above table, we can see that network with two hdden layers are in general not much better performing than the single hidden layer. Some more complexed models performs a lot worse. 
+From the above table, we can see that a network with two hidden layers are in general not much better performing than the single hidden layer. Some more complex models perform a lot worse. 
 
-Three hidden layers does not help performance. It seems brittle: with small channges and the performances tanks.  This is like due to overfitting. 
+Three hidden layers does not help performance. It seems brittle: with small changes, performance tanks.  This is likely due to overfitting. 
 
-We ar mostly interesting in simple network with two hidden layers, for these reasons: it is as performing as single layer but offer a lot more options to tune. In particular, we pick hidden layer [8, 2] network to further tune for crank up performance.  
+We are mostly interested in a simple network with two hidden layers, for these reasons: it is as performing as a network with a single layer but offers a lot more options to tune. In particular, we pick hidden layer [8, 2] network to further tune for cranking up performance.  
 
-#### Tune hyperparameters
+#### Tuning hyperparameters
 
-Since the dataset is credit approval, F1 and accuracy is of ultimate importance, because it could mean that the business could avoid unnecessary loss for bad approvals, or missed profit for deny qualified applicants. For the same or close accuracy and F1 values, we would like the ones with lower loss because the higher confidence it implied.  
+Since the dataset is for credit approvals, F1 and accuracy is of ultimate importance, because it could mean that the business could avoid unnecessary losses for bad approvals, or missed profits from denying qualified applicants. For the same or close accuracy and F1 values, we would like the ones with lower losses due to the higher confidence they implied.  
 
 | NN | batch size | lr | rlambda | loss | Accuracy | Precision | Recall | F1 |
 | :---: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -538,6 +538,8 @@ F1           0.880599
 
 ![Best Ranked](./img/proj_credit_approval_adj_best.png)
 
+<!--
+
 ![Fold 1](./img/proj_credit_approval_adj_1.png)
 
 ![Fold 2](./img/proj_credit_approval_adj_2.png)
@@ -558,21 +560,23 @@ F1           0.880599
 
 ![Fold 10](./img/proj_credit_approval_adj_10.png)
 
+-->
+
 ### 4. Summary 
 
-All KNN, random forest, and NN delived solid results:    
+All KNN, random forest, and NN delivered solid results:    
 
 ```
 KNN:  accuracy 0.8715 F1 0.8701
-RD:   accuracy 0.8575 F1 0.8537
+RF:   accuracy 0.8575 F1 0.8537
 NN:   accuracy 0.8808 F1 0.8806
 ```
 
-All accuracy > 0.85, all F1 > 0.85. The consistency boost our confidence in the results.  
+All accuracy > 0.85, and all F1 > 0.85. The consistency boosts our confidence in the results.  
 
-RF show remarkable resistance to noise, with stable and consistent high performance for $ntrees \ge 125$.  
+RF shows remarkable resistance to noise, with stable and consistent high performance for `ntrees` $\ge 125$.  
 
-NN is the top performer here. We know NN shines on large data set. But we only have 653 data samples here. This shows the power of NN and proper hyperparameter tunning.
+NN is the top performer here. We know NN shines on a large data set. But we only have 653 data samples here. This shows the power of NN and proper hyperparameter tuning.
 
-KNN performers well here too. This might due to the clean data set in credit approval dataset, despite those data tends to be noisy. All features are more or less equally important. And, it has moderate demension. This is where KNN shines.
+KNN performs well here too. This might be due to the clean data in the credit approval dataset, despite the data tending to be noisy. All features are more or less equally important. It also has a moderate dimension. This is where KNN shines.
 

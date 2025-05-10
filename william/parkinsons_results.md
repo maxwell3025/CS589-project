@@ -261,45 +261,49 @@ optional arguments:
                         Early majority stop threshold like 0.85, default 1.00
   --random_state RANDOM_STATE
                         random seed like 42, -5, default None
+```
 
+\
 
 Use `-ntrees -1` to let the random forest algorithm loop over [1 5 10 20 30 40 50 75 100 125 150 200 250 300] trees.  
 
 To handle the large computational demand, multiprocessing is used to use multicores (overcome python GIL lock). Multiprocessing queues are used to feed workers with tasks and collect results. For details, please see the code.  
 
+```
 $ python random_forest.py -bst true --random_state 42 -p parkinsons.csv
 
-Random Forest Performance: 
+Random Forest Performance:
     Accuracy  Precision    Recall        F1
-1   0.810688   0.752122  0.756743  0.743992
-5   0.861215   0.827278  0.789080  0.803977
-10  0.876606   0.853321  0.820192  0.829893
-20  0.902517   0.909036  0.837203  0.857684
-30  0.897389   0.902747  0.820651  0.848971
-40  0.902517   0.908428  0.830651  0.857514
-50  0.913171   0.924270  0.846322  0.871725
+1   0.795877   0.726777  0.751667  0.724058
+5   0.846959   0.827656  0.760952  0.768689
+10  0.897222   0.901152  0.834286  0.851880
+20  0.897222   0.901847  0.825357  0.846831
+30  0.917778   0.929942  0.852262  0.872610
+40  0.912515   0.926241  0.842262  0.866618
+50  0.922778   0.935527  0.855595  0.879533
+```
 
 All our algorithms are properly handling random state, making results repeatable.  
 
+```
 $ python random_forest.py -bst true -ntrees -1 --random_state 42 -p parkinsons.csv 
 
 Random Forest Performance:
      Accuracy  Precision    Recall        F1
-1    0.810688   0.752122  0.756743  0.743992
-5    0.861215   0.827278  0.789080  0.803977
-10   0.876606   0.853321  0.820192  0.829893
-20   0.902517   0.909036  0.837203  0.857684
-30   0.897389   0.902747  0.820651  0.848971
-40   0.902517   0.908428  0.830651  0.857514
-50   0.913171   0.924270  0.846322  0.871725
-75   0.902908   0.931414  0.810996  0.848773
-100  0.902908   0.926258  0.818659  0.851321
-125  0.913171   0.938731  0.832107  0.867483
-150  0.908171   0.936210  0.822107  0.857708
-200  0.902780   0.919270  0.817548  0.852392
-250  0.912908   0.936608  0.830996  0.867389
-300  0.912780   0.924785  0.837548  0.869305
-
+1    0.795877   0.726777  0.751667  0.724058
+5    0.846959   0.827656  0.760952  0.768689
+10   0.897222   0.901152  0.834286  0.851880
+20   0.897222   0.901847  0.825357  0.846831
+30   0.917778   0.929942  0.852262  0.872610
+40   0.912515   0.926241  0.842262  0.866618
+50   0.922778   0.935527  0.855595  0.879533
+75   0.907778   0.916609  0.838929  0.859276
+100  0.907515   0.926679  0.825595  0.855340
+125  0.917515   0.932561  0.845595  0.870965
+150  0.917515   0.932561  0.845595  0.870965
+200  0.917515   0.937770  0.838929  0.870066
+250  0.917515   0.937770  0.838929  0.870066
+300  0.917515   0.937770  0.838929  0.870066
 ```
 
 ![Random Forest: Parkinsons](./img/rf_parkinsons_entropy.png)   
@@ -311,20 +315,21 @@ We also explored the Gini index to see whether it offers improvement over entrop
 $ python random_forest.py -bst true -ntrees -1 -gini true --random_state 42 -p parkinsons.csv
 Random Forest Performance:
      Accuracy  Precision    Recall        F1
-1    0.789501   0.722170  0.741724  0.725693
-5    0.876862   0.859376  0.806973  0.822951
-10   0.876734   0.853395  0.822299  0.829350
-20   0.892247   0.881943  0.823870  0.842421
-30   0.902645   0.906008  0.831762  0.856761
-40   0.897517   0.901399  0.821762  0.848041
-50   0.897645   0.908642  0.814100  0.844437
-75   0.887254   0.899238  0.792989  0.826783
-100  0.887254   0.892997  0.800651  0.829498
-** 125  0.897382   0.916576  0.806437  0.841780
-150  0.897382   0.916576  0.806437  0.841780
-200  0.902645   0.921372  0.817548  0.850715
-250  0.902645   0.921372  0.817548  0.850715
-300  0.902645   0.921372  0.817548  0.850715
+1    0.815614   0.754211  0.798095  0.762186
+5    0.820322   0.799579  0.743333  0.739653
+10   0.892515   0.874021  0.853214  0.850105
+20   0.903070   0.912780  0.837857  0.854952
+30   0.913333   0.927066  0.844762  0.866985
+40   0.908070   0.920537  0.841429  0.862526
+** 50   0.923333   0.945607  0.851429  0.879419
+75   0.912778   0.928137  0.835595  0.862725
+100  0.912515   0.935012  0.828929  0.861610
+125  0.912515   0.935012  0.828929  0.861610
+150  0.917515   0.937770  0.838929  0.870066
+200  0.912515   0.935012  0.828929  0.861610
+250  0.912515   0.935012  0.828929  0.861610
+300  0.912515   0.935012  0.828929  0.861610
+
 
 (** indicates the optimal tuning parameters)
 ```
@@ -332,11 +337,11 @@ Random Forest Performance:
 ![Random Forest by Gini: Parkinsons](./img/rf_parkinsons_gini.png)   
 
 
-Both entropy and the Gini index offer very similar performances. They all start with low accuracy, precision, recall, and F1  for low `ntrees` counts. This is expected, as a random forest relies on collection of the wisdom of weak learners. Each decision tree offers better than random performance, but it is far from stellar. As `ntrees` reaches 20, performances are significantly improved, with accuracy 0.90 and F1 0.85. The model continues to improve, synergizing the knowledge of more decision trees, until `ntrees` = around 125. This is the point where all metrics peak together, with accuracy 0.913, precision 0.939, recall 0.832, and F1 0.867. Then the performance more or less is flat. This is the point of diminishing returns for more computing. 
+Both entropy and the Gini index offer very similar performances. They all start with low accuracy, precision, recall, and F1  for low `ntrees` counts. This is expected, as a random forest relies on collection of the wisdom of weak learners. Each decision tree offers better than random performance, but it is far from stellar. As `ntrees` reaches 20, performances are significantly improved, with accuracy 0.90 and F1 0.85. The model continues to improve, synergizing the knowledge of more decision trees, until `ntrees` = around 50. This is the point where all metrics peak together, with accuracy 0.923, precision 0.936, recall 0.856, and F1 0.880. Then the performance more or less is flat. This is the point of diminishing returns for more computing. 
 
 The chart by Gini index is similar. It is just smoother, with less variation. This confirmation is welcome in our analysis.
 
-So, we would pick `ntrees = 125` as the optimal hyperparameter for random forest algorithms. 
+So, we would pick `ntrees = 50` as the optimal hyperparameter for random forest algorithms. 
 
 
 \newpage
@@ -382,6 +387,8 @@ optional arguments:
   -proj PROJECT_NAME_PREFIX, --project_name_prefix PROJECT_NAME_PREFIX
                         Project name prefix, like myproject, default proj
 ```
+
+\
 
 We want to build a simple network with strong performance, rather than a complex network of over curve-fitting. So we start by exploring a network with a single hidden layer with a low neuron count, then two hidden layers, then three hidden layers. We shall see that a moderate network is adequate. 
 
@@ -483,7 +490,9 @@ $ python nn.py --hidden_neurons "8 2" -lr 0.05 -rlambda 0.0004 \
                 --k_epoch_shuffle -1 -kfold 10 --random_state 42 -p parkinsons.csv
 
 Stratified K-Fold losses: 
-[0.418539881293964, 0.12249701755547995, 0.08748663880663718, 0.11358799573722644, 0.47826415872115924, 0.40737977879197607, 0.14949259724423616, 0.033229596585356305, 0.14649928745280563, 0.4056980514434281] 
+[0.418539881293964, 0.12249701755547995, 0.08748663880663718, 0.11358799573722644, \
+0.47826415872115924, 0.40737977879197607, 0.14949259724423616, 0.033229596585356305, \
+0.14649928745280563, 0.4056980514434281] 
 mean loss: 0.2362675003632269
 
 Stratified K-Fold Performances: 
@@ -503,6 +512,7 @@ Stratified K-Fold Performances:
 
 ![Optimal NN](./img/proj_parkinsons_best.png)
 
+<!--
 ![Fold 1](./img/proj_parkinsons_1.png)
 
 ![Fold 2](./img/proj_parkinsons_2.png)
@@ -523,10 +533,11 @@ Stratified K-Fold Performances:
 
 ![Fold 10](./img/proj_parkinsons_10.png)
 
+-->
 
 ### 4. Summary 
 
-All KNN, random forest, and NN delived solid results:    
+All of KNN, random forest, and NN deliveredd solid results:    
 
 ```
 KNN:  accuracy 0.9373 F1 0.9161
@@ -534,13 +545,13 @@ RD:   accuracy 0.8974 F1 0.8418
 NN:   accuracy 0.8128 F1 0.8803
 ```
 
-All accuracy > 0.89, all F1 > 0.84. The consistency boost our confidence in the results.  
+All accuracy > 0.89, and all F1 > 0.84. The consistency boosts our confidence in the results.  
 
-RF show remarkable resistance to noise, with stable and consistent high performance for $ntrees \ge 125$.  
+RF shows remarkable resistance to noise, with stable and consistent high performance for `ntrees` $\ge 125$.  
 
-KNN is the top performer here. This might due to the clean data set in Parkinsons dataset. All features are more or less equally important. And, it has moderate demension. This is where KNN shines.
+KNN is the top performer here. This might due to the clean data in the Parkinson's dataset. All features are more or less equally important. And it has a moderate demension. This is where KNN shines.
 
-NN performs well too. We know NN shines on large data set. But we have less than 200 data samples here. This shows the power of NN and proper hyperparameter tunning.
+NN performs well too. We know that NN shines on large data sets. But we have less than 200 data samples here. This shows the power of NN and proper hyperparameter tuning.
 
 
 
