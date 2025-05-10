@@ -3,22 +3,31 @@ from matplotlib import pyplot
 import argparse
 
 argparser = argparse.ArgumentParser()
-argparser.add_argument("--data", required=True)
-argparser.add_argument("--index", required=True)
-argparser.add_argument("--name", required=True)
-
+argparser.add_argument("--data",   "-d", required = True, help = "The path to the .csv file whose "
+                                                                 "data will be graphed.")
+argparser.add_argument("--x-axis", "-x", required = True, help = "The column that will be the x "
+                                                                 "axis for every graph.")
+argparser.add_argument("--name",   "-n", required = True, help = "A prefix for all of the "
+                                                                 "generated file names.")
+argparser.add_argument("--filter", "-f", required = True, help = "The value that "
+                                                                 "\"hyperparameter\" must match.") 
 args = argparser.parse_args()
 
-index = args.index
-name = args.name
+x_axis = args.x_axis
 
-results = pandas.read_csv(args.data, index_col=index)
+results = pandas.read_csv(args.data)
+results = results[results.hyperparameters == args.filter]
+results = results[[column for column in results.columns if column != "hyperparameters"]]
 
 for column in results.columns:
-    results.groupby(index).mean().plot(y=column, yerr=results.groupby(index).std(), legend=False)
-    pyplot.title(f"{index} v.s {column}")
-    pyplot.xlabel(index)
+    if column == x_axis or column == "hyperparameters":
+        continue
+    results.groupby(x_axis).mean().plot(y = column,
+                                        yerr = results.groupby(x_axis).std(),
+                                        legend = False)
+    pyplot.title(f"{x_axis} v.s {column}")
+    pyplot.xlabel(x_axis)
     pyplot.ylabel(column)
     pyplot.grid(True)
-    pyplot.savefig(f"maxwell/figures/{name}_{column}.pdf", bbox_inches="tight")
+    pyplot.savefig(f"maxwell/figures/{args.name}_{column}.pdf", bbox_inches="tight")
     pyplot.clf()

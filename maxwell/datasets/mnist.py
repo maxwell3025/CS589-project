@@ -2,8 +2,8 @@ from sklearn import datasets
 import numpy
 
 class MNIST:
-    features: list[numpy.ndarray]
-    labels: list[numpy.ndarray]
+    features: numpy.ndarray
+    labels: numpy.ndarray
     size: int
 
     def __init__(self):

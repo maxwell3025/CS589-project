@@ -263,7 +263,6 @@ def accuracy_stats(accuracy):
 
 def plot(df_train, df_test, show=False):
     title = args.path.replace('.csv', '')
-    title = title.replace('../dataset/', '')
 
     ks = df_train.index
 
