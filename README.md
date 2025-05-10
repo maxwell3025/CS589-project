@@ -32,7 +32,19 @@
 ## Non-trivial Algorithm
 - Linear regression w/ different bases
 
-### Data Generation
+To reproduce Maxwell's data, use these commands:
+
+### Run
+```bash
+python maxwell/<dataset>_<arch>.py <options>
+```
+
+### Print Table
 ```bash
 python maxwell/print_results.py <options>
+```
+
+### Graph
+```bash
+python maxwell/plot_data.py <options>
 ```
