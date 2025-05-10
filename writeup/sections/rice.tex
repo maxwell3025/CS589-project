@@ -1,7 +1,21 @@
 \section{Rice Dataset}
 Maxwell's implementations were used for the entirety of this dataset.
-For the rice dataset, we chose 
-\subsection{Hyperparameter Sets}
+
+For the rice dataset, we chose to use the multilayer perceptron (MLP), k-nearest neighbors (KNN), and
+random forest (RF) architectures to predict on our dataset.
+We chose this because decision trees are a subset of random forests and naive bayes is hard to adapt
+to numerical data.
+
+First, we swept over the secondary hyperparameters in each algorithm.
+For MLP, we used a training rate of 0.1, a regularization cost of 0.01, and used unbatched gradient
+descent.
+As shown in Table \ref{tab:rice_nn}, you can see that a model shape of [64, 128, 1] achieved the
+highest accuracy.
+For RF, we used the set size as a stopping criteria: nodes below the splitting threshold cannot be
+split.
+As shown in Table \ref{tab:rice_random_forest}, a splitting threshold of 30 achieves the highest
+accuracy.
+
 \begin{table}
     \centering
     \begin{tabular}{c|c|c}
@@ -54,3 +68,42 @@ For the rice dataset, we chose
              The best ntree value is used for each hyperparameter setting.}
     \label{tab:rice_random_forest}
 \end{table}
+
+As shown in Figure \ref{fig:rice_knn}, a k value of around 3 or 4 is the best.
+This indicates that the dataset doesn't have very strongly mixed classes.
+As shown in Figure \ref{fig:rice_nn}, all metrics plateau around 100 epochs in.
+As shown in Figure \ref{fig:rice_random_forest}, the metrics rise steeply and then plateau.
+The exact values for these penomena can be found in the referenced graphs and in the code.
+The best performing model overall was the MLP with an accuracy of 0.93.
+This is really close the best performance of random forests, which was 0.928, but this was
+significantly higher than the best performace of the KNN architecture, which was 0.89.
+This might indicate that the dataset has differently behaved regions, where some areas have more
+outliers than others, making KNN models dificult to fit to the dataset.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.30\textwidth]{figures/rice_knn_accuracy.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/rice_knn_f1_0.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/rice_knn_f1_1.pdf}
+    \caption{Performance metrics graphed against k for KNN on the rice dataset.}
+    \label{fig:rice_knn}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.30\textwidth]{figures/rice_nn_accuracy.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/rice_nn_f1_0.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/rice_nn_f1_1.pdf}
+    \caption{Training graphs for a MLP trained on the rice dataset.}
+    \label{fig:rice_nn}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.30\textwidth]{figures/rice_random_forest_accuracy.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/rice_random_forest_f1_0.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/rice_random_forest_f1_1.pdf}
+    \caption{Performance metrics graphed against ntree for random forests trained on the rice
+             dataset}
+    \label{fig:rice_random_forest}
+\end{figure}

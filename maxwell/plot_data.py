@@ -16,10 +16,15 @@ args = argparser.parse_args()
 x_axis = args.x_axis
 
 results = pandas.read_csv(args.data)
-results = results[results.hyperparameter == args.filter]
+results = results[results.hyperparameters == args.filter]
+results = results[[column for column in results.columns if column != "hyperparameters"]]
 
 for column in results.columns:
-    results.groupby(x_axis).mean().plot(y=column, yerr=results.groupby(x_axis).std(), legend=False)
+    if column == x_axis or column == "hyperparameters":
+        continue
+    results.groupby(x_axis).mean().plot(y = column,
+                                        yerr = results.groupby(x_axis).std(),
+                                        legend = False)
     pyplot.title(f"{x_axis} v.s {column}")
     pyplot.xlabel(x_axis)
     pyplot.ylabel(column)

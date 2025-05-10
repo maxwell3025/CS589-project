@@ -1,5 +1,5 @@
 \section{MNIST Dataset}
-\subsection{Hyperparameter Sets}
+
 \begin{table}
     \centering
     \begin{tabular}{c|c|c}
@@ -14,12 +14,11 @@
         [64, 8, 8, 10]   & 999   & 0.533731
     \end{tabular}
     \caption{The results for the hyperparameter tuning step on the MLP architecture trained on the
-             rice dataset.
+             MNIST dataset.
              The best epoch is used for each hyperparameter setting.}
     \label{tab:mnist_nn}
 \end{table}
 
-\subsection{Hyperparameter Sets}
 \begin{table}
     \centering
     \begin{tabular}{c|c|c}
@@ -34,7 +33,59 @@
         2                       & 10    & 0.523063
     \end{tabular}
     \caption{The results for the hyperparameter tuning step on the random forest architecture
-             trained on the rice dataset.
+             trained on the MNIST dataset.
              The best epoch is used for each hyperparameter setting.}
     \label{tab:mnist_random_forest}
 \end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_accuracy.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_0.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_1.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_2.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_3.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_4.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_5.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_6.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_7.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_8.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_knn_f1_9.pdf}
+    \caption{Performance metrics graphed against k for KNN on the MNIST dataset.}
+    \label{fig:mnist_knn}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_accuracy.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_0.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_1.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_2.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_3.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_4.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_5.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_6.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_7.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_8.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_nn_f1_9.pdf}
+    \caption{Training graphs for a MLP trained on the MNIST dataset.}
+    \label{fig:mnist_nn}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_accuracy.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_0.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_1.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_2.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_3.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_4.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_5.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_6.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_7.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_8.pdf}
+    \includegraphics[width=0.30\textwidth]{figures/mnist_random_forest_f1_9.pdf}
+    \caption{Performance metrics graphed against ntree for random forests trained on the MNIST
+             dataset}
+    \label{fig:mnist_random_forest}
+\end{figure}
