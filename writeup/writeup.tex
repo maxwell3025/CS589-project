@@ -1,5 +1,6 @@
 \documentclass[letterpaper]{article}
 \usepackage{graphicx}
+\usepackage{pdfpages}
 
 \title{COMPSCI 589 Final Project}
 \author{William Cai, Maxwell Tang}
@@ -10,7 +11,7 @@
     See \verb|README.md| for running instructions.
     \input{sections/mnist.tex}
     \input{sections/rice.tex}
-    \input{sections/credit.tex}
-    \input{sections/parkinsons.tex}
+    \includepdf[pages=-]{figures/credit_approval_res.pdf}
+    \includepdf[pages=-]{figures/parkinsons_res.pdf}
     \input{sections/summary.tex}
 \end{document}
