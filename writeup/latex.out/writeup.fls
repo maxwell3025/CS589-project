@@ -53,11 +53,12 @@ INPUT ./sections/mnist.tex
 INPUT sections/mnist.tex
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ./figures/mnist_knn_accuracy.pdf
-INPUT ./figures/mnist_knn_accuracy.pdf
-INPUT ./figures/mnist_knn_accuracy.pdf
-INPUT ./figures/mnist_knn_accuracy.pdf
 OUTPUT latex.out/writeup.pdf
+INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT ./figures/mnist_knn_accuracy.pdf
+INPUT ./figures/mnist_knn_accuracy.pdf
+INPUT ./figures/mnist_knn_accuracy.pdf
+INPUT ./figures/mnist_knn_accuracy.pdf
 INPUT ./figures/mnist_knn_accuracy.pdf
 INPUT ./figures/mnist_knn_f1_0.pdf
 INPUT ./figures/mnist_knn_f1_0.pdf
@@ -222,7 +223,6 @@ INPUT ./figures/mnist_random_forest_f1_9.pdf
 INPUT ./sections/rice.tex
 INPUT ./sections/rice.tex
 INPUT sections/rice.tex
-INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT ./figures/rice_knn_accuracy.pdf
 INPUT ./figures/rice_knn_accuracy.pdf
 INPUT ./figures/rice_knn_accuracy.pdf

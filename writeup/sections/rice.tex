@@ -1,5 +1,5 @@
 \section{Rice Dataset}
-Maxwell's implementations were used for the entirety of this dataset.
+Maxwell's implementations were used for the entirety of the rice dataset.
 
 For the rice dataset, we chose to use the multilayer perceptron (MLP), k-nearest neighbors (KNN), and
 random forest (RF) architectures to predict on our dataset.
@@ -9,7 +9,7 @@ to numerical data.
 First, we swept over the secondary hyperparameters in each algorithm.
 For MLP, we used a training rate of 0.1, a regularization cost of 0.01, and used unbatched gradient
 descent.
-As shown in Table \ref{tab:rice_nn}, you can see that a model shape of [64, 128, 1] achieved the
+As shown in Table \ref{tab:rice_nn}, you can see that a model shape of [7, 8, 8, 1] achieved the
 highest accuracy.
 For RF, we used the set size as a stopping criteria: nodes below the splitting threshold cannot be
 split.

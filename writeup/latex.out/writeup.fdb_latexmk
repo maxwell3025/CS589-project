@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1746842019.81846 "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" "latex.out/writeup.pdf" "writeup" 1746842020.1204 0
+["pdflatex"] 1746842823.01136 "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" "latex.out/writeup.pdf" "writeup" 1746842823.31192 0
   "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" 1746827417.84262 256 769223cfa1a2a7e038d11cd9970a1972 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -75,9 +75,9 @@
   "figures/rice_random_forest_accuracy.pdf" 1746839025.44562 10659 065ae634ea656aabb464e4b85c6f5122 ""
   "figures/rice_random_forest_f1_0.pdf" 1746839025.44562 9302 dfafb58643f66ed5a959fc22fac5dbfd ""
   "figures/rice_random_forest_f1_1.pdf" 1746839025.44562 9763 c0840ab937035b596bfe34ebd82ae16c ""
-  "latex.out/writeup.aux" 1746842020.08359 2823 bb1cbf95f8fde29d12ffe605fa437533 "pdflatex"
-  "sections/mnist.tex" 1746841122.48724 4526 ecd6c788ce62ec6014307539559b679f ""
-  "sections/rice.tex" 1746842019.65858 5184 c84f0682371348927bfeab8ed38b10b9 ""
+  "latex.out/writeup.aux" 1746842823.27577 2823 0c5e7a8f040f6654e49bfb8a8df30102 "pdflatex"
+  "sections/mnist.tex" 1746842822.84077 6568 61f222c392b08d540c84802e8824744f ""
+  "sections/rice.tex" 1746842152.98587 5188 3c7dc7217b59c0556bbc49e6324fc79c ""
   "writeup.tex" 1746827417.84262 256 769223cfa1a2a7e038d11cd9970a1972 ""
   (generated)
   "latex.out/writeup.aux"
