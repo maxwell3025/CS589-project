@@ -1,0 +1,17 @@
+\section{Summary of Results}
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{l|l|l|l|l|l|l|l|l}
+    \hline
+        Algorithm & \multicolumn{2}{l}{Credit Approval} & \multicolumn{2}{l}{Parkinsons} & \multicolumn{2}{l}{Rice Grains} & \multicolumn{2}{l}{Hand-Written Digits} \\ \hline
+        ~   & \textbf{Accuracy} & \textbf{F1}     & \textbf{Accuracy} & \textbf{F1}     & \textbf{Accuracy} & \textbf{F1} & \textbf{Accuracy} & \textbf{F1} \\ \hline
+        KNN & 0.8715            & 0.8701          & \textbf{0.9373}   & \textbf{0.9161} & 0.8906            & 0.9056      & 0.8906            & 0.9579\\
+        RF* & 0.8575            & 0.8537          & 0.8974            & 0.8418          & 0.9282            & 0.9370      & 0.9772            & 0.9473\\
+        NN  & \textbf{0.8808}   & \textbf{0.8806} & 0.9128            & 0.8803          & 0.9310            & 0.9398      & 0.9521            & 0.8881\\
+    \end{tabular}
+\end{table}
+
+BOLD indicates the highest performance. 
+RF*: Random Forest
+
+Note that for F1 scores in MNIST, the worst F1 score is used
