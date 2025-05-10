@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1746847772.34275 "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" "latex.out/writeup.pdf" "writeup" 1746847773.84127 0
-  "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" 1746847007.5638 357 c780e1f8f1afcaebc1af0d497f63a391 ""
+["pdflatex"] 1746848037.2544 "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" "latex.out/writeup.pdf" "writeup" 1746848038.92936 0
+  "/home/maxwell/Documents/College/COMPSCI_589/CS589-project/writeup/writeup.tex" 1746848037.07931 408 47b45366d4addcb8386320243b4d0db9 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -115,13 +115,13 @@
   "figures/rice_random_forest_accuracy.pdf" 1746843323.9495 10659 065ae634ea656aabb464e4b85c6f5122 ""
   "figures/rice_random_forest_f1_0.pdf" 1746843323.9495 9302 dfafb58643f66ed5a959fc22fac5dbfd ""
   "figures/rice_random_forest_f1_1.pdf" 1746843323.9495 9763 c0840ab937035b596bfe34ebd82ae16c ""
-  "latex.out/writeup.aux" 1746847773.78298 4819 5faf53c589b6bda624bd1354f8c5fe0f "pdflatex"
+  "latex.out/writeup.aux" 1746848038.84931 4819 35d5795d66f3b6c0603cf4d0154c617b "pdflatex"
   "sections/credit.tex" 1746845995.22278 29731 10f74608ad18ceb42fa2052b2b1876f5 ""
   "sections/mnist.tex" 1746843570.1575 6570 c15dbaadb3fa0299743bb0f95d7c4e43 ""
   "sections/parkinsons.tex" 1746846774.81527 29141 c94102ad447e9b4a5298472e68e491e9 ""
   "sections/rice.tex" 1746843324.3225 5188 3c7dc7217b59c0556bbc49e6324fc79c ""
   "sections/summary.tex" 1746847772.18098 1066 23a899c92551a5fcd80cdb0382776f59 ""
-  "writeup.tex" 1746847007.5638 357 c780e1f8f1afcaebc1af0d497f63a391 ""
+  "writeup.tex" 1746848037.07931 408 47b45366d4addcb8386320243b4d0db9 ""
   (generated)
   "latex.out/writeup.aux"
   "latex.out/writeup.log"
